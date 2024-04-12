@@ -105,6 +105,14 @@ def draw(game_window, tiles):
     pygame.display.update()
 
 
+def refresh_game(game_window, tiles):
+    game_window.fill(BACKGROUND_COLOUR)
+    draw_grid(game_window)
+    tiles.clear()
+    tiles.update(generate_tiles())
+    pygame.display.update()
+
+
 def get_random_pos(tiles):
     while True:
         row = random.randrange(0, ROWS)
@@ -242,6 +250,11 @@ def game_loop(game_window):
                     move_tiles(game_window, tiles, clock, "up")
                 elif event.key == pygame.K_DOWN:
                     move_tiles(game_window, tiles, clock, "down")
+                elif event.key == pygame.K_r:
+                    refresh_game(game_window, tiles)
+                elif event.key == pygame.K_q:
+                    run = False
+                    break
 
         draw(game_window, tiles)
     pygame.quit()
