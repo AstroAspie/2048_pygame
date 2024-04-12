@@ -1,6 +1,4 @@
-# 2048_pygame
-
-# 2048 game implemented in python using pygame
+# 2048 using pygame
 
 # ## How to play
 - Use arrow keys to move the tiles
