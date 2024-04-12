@@ -9,6 +9,7 @@ pygame.init()
 FPS = 60
 
 WIDTH, HEIGHT = 800, 800
+WINDOW_WIDTH, WINDOW_HEIGHT = 1100, 800
 ROWS = 4
 COLS = 4
 
@@ -24,7 +25,7 @@ FONT_COLOUR = (119, 110, 101)
 FONT = pygame.font.SysFont("comicsans", 60, bold=True)
 MOVE_VEL = 20  # Velocity of the movement of the tiles (in pixels per second)
 
-GAME_WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
+GAME_WINDOW = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 pygame.display.set_caption("2048")
 
 
@@ -93,12 +94,21 @@ def draw_grid(game_window):
     pygame.draw.rect(game_window, OUTLINE_COLOUR, (0, 0, WIDTH, HEIGHT), OUTLINE_THICKNESS)
 
 
+def score_card(game_window, score):
+    font = pygame.font.Font(None, 36)
+    text = font.render("Score: " + str(score), 1, (10, 10, 10))
+    game_window.blit(text, (WINDOW_WIDTH - 180, 50))
+
 def draw(game_window, tiles):
     # Clear Screen and draw game grid and tiles
     game_window.fill(BACKGROUND_COLOUR)
 
+    score = 0
     for tile in tiles.values():
         tile.draw(game_window)
+        score += tile.value
+
+    score_card(game_window, score)
 
     draw_grid(game_window)
     # Draw the tiles
