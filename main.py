@@ -97,7 +97,24 @@ def draw_grid(game_window):
 def score_card(game_window, score):
     font = pygame.font.Font(None, 36)
     text = font.render("Score: " + str(score), 1, (10, 10, 10))
-    game_window.blit(text, (WINDOW_WIDTH - 180, 50))
+    game_window.blit(text, (WINDOW_WIDTH - 280, 50))
+
+
+def help_text(game_window):
+    font = pygame.font.Font(None, 22)
+    text = font.render("Instructions: ", 1, (10, 10, 10))
+    game_window.blit(text, (WINDOW_WIDTH - 290, WINDOW_HEIGHT - 100))
+
+    text = font.render("Press 'r' to restart the game", 1, (10, 10, 10))
+    game_window.blit(text, (WINDOW_WIDTH - 290, WINDOW_HEIGHT - 60))
+
+    text = font.render("Press 'q' to quit the game", 1, (10, 10, 10))
+    game_window.blit(text, (WINDOW_WIDTH - 290, WINDOW_HEIGHT - 40))
+
+    # Controls
+    text = font.render("Use arrow keys to move the tiles", 1, (10, 10, 10))
+    game_window.blit(text, (WINDOW_WIDTH - 290, WINDOW_HEIGHT - 80))
+
 
 def draw(game_window, tiles):
     # Clear Screen and draw game grid and tiles
@@ -109,6 +126,7 @@ def draw(game_window, tiles):
         score += tile.value
 
     score_card(game_window, score)
+    help_text(game_window)
 
     draw_grid(game_window)
     # Draw the tiles
